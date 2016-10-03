@@ -12,6 +12,7 @@
     "csv-stringify": "^1.0.4",
     "diskdb": "^0.1.15",
     "lodash": "^4.15.0",
+    "public-eye": "^0.2.1",
     "sandcrawler": "git+https://github.com/medialab/sandcrawler.git",
     "slug": "^0.9.1"
   }
