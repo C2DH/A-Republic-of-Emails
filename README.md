@@ -1,6 +1,6 @@
 # A-Republic-of-Emails
 
-A Republic of Emails is a project in which students of the History master at the University of Luxembourg experiment with digital methods/tools on the Hillary Clinton emails. These emails were released as part of a FOIA request, and subsequently hosted by Wikileaks at https://wikileaks.org/clinton-emails/. To analyse the emails using digital tools, the Wikileaks email archive needs to be scraped to put the emails in an appropriate format. 
+A Republic of Emails is a project in which students of the History master at the University of Luxembourg experiment with digital methods/tools on the Hillary Clinton emails. These emails were released as part of a FOIA request (see https://en.wikipedia.org/wiki/Hillary_Clinton_email_controversy#Freedom_of_Information_lawsuits), and subsequently hosted by Wikileaks at https://wikileaks.org/clinton-emails/. To analyse the emails using digital tools, the Wikileaks email archive needs to be scraped to put the emails in an appropriate format. 
 The scripts on this GitHub repository can be used to scrape the archive.
 
 ## Installation
