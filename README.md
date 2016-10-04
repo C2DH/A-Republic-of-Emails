@@ -30,3 +30,16 @@ Launch the main script:
 
 and wait for the process to be completed.
 
+# Results
+The script will save the contents of the emails in separate `.txt` files in the `contents` folder in separate folders per 1,000 emails, from `f-0` to `f-30`. These folders are automatically created.
+
+The metadata of the emails are saved in `export.csv` and `export.json`, which contain the exact same data:
+
+1. `url` (The Wikileaks URL)
+2. `src` (The location of the `.txt` file
+3. `data` (empty)
+4. `From` (The sender of the email)
+5. `To` (The receiver of the email)
+6. `Subject` (The email title)
+7. `Date` (The date and time of sending the email)
+8. `contents` (empty)
