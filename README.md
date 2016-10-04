@@ -13,7 +13,7 @@ will contain the indexDB - in our case `./contents` will work perfectly, cfr the
 
     mkdir contents
 
-## start your engine
+## start your engines :)
 Launch the main script:
 
     node index.js
