@@ -39,7 +39,7 @@ Sometimes, some emails may not be scraped correctly due to time-out errors. To c
 
 `node index.js`
 
-The script will run through all the scraped emails and scrape missing emails.
+The script will run through all the scraped emails and scrape missing emails. If you get the error `TypeError: Cannot read property 'split' of undefined` this means there are no more emails to be scraped.
 
 # Results
 The script will save the contents of the emails in separate `.txt` files in the `contents` folder in separate folders per 1,000 emails, from `f-0` to `f-30`. These folders are automatically created.
