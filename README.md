@@ -21,14 +21,21 @@ Before installation, the scraping script requires Node.js to be installed, see h
     
 
 # Usage
-In the `settings.js` file, specify the number of emails to be scraped per run. The default is 10, but we advise a number between 500-1500. The script counts the number of scraped emails in order to start with the next email.
+In the `settings.js` file, specify the number of emails to be scraped per run. The default is `10`, but we advise a number between 500-1500. The script counts the number of scraped emails in order to start with the next email.
 
-## start your engines :)
+## Start your engines :)
 Launch the main script:
 
     node index.js
 
 and wait for the process to be completed.
+
+## Validation
+Sometimes, some emails may not be scraped correctly due to time-out errors. To check your database, change the number of emails to be scraped in the `settings.js` file to `10` and run the script again with:
+
+`node index.js`
+
+The script will run through all the scraped emails and scrape missing emails.
 
 # Results
 The script will save the contents of the emails in separate `.txt` files in the `contents` folder in separate folders per 1,000 emails, from `f-0` to `f-30`. These folders are automatically created.
