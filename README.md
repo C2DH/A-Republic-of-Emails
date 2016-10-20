@@ -54,3 +54,8 @@ The metadata of the emails are saved in `export.csv` and `export.json`, which co
 6. `Subject` (The email title)
 7. `Date` (The date and time of sending the email)
 8. `contents` (empty)
+
+
+## stanfordNER enrichment
+
+
