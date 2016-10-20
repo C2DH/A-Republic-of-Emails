@@ -17,6 +17,7 @@ var q = async.queue(function(filepath, nextFile) {
       console.log('-- reading file: ', filepath)
       fs.readFile(filepath, {encoding: 'utf8'}, next);
     },
+    
     function(contents, next) {
       console.log('-- parsing with stanfordNER file: ', filepath);
       publicEye.stanfordNER({
