@@ -3,6 +3,7 @@
   Print out a proper csv. To be used after stanfordNER
 */
 var fs          = require('fs'),
+    path        = require('path'),
     db          = require('diskdb'),
     _           = require('lodash'),
     async       = require('async'),
@@ -21,9 +22,11 @@ var q = async.queue(function(record, nextRecord) {
 
   async.waterfall([
     function getNERfile(next) {
-      console.log('-- reading NER file: ', filepath +  '.NER.json');
+      var NERfile = path.join(path.dirname(filepath), 'NER', path.basename(filepath) + '.NER.json');
+
+      console.log('-- reading NER file: ', NERfile);
       // get NER annotated file
-      fs.readFile(filepath + '.NER.json', {encoding: 'utf8'}, next);
+      fs.readFile(NERfile, {encoding: 'utf8'}, next);
       // next(null, contents);
     },
 
@@ -34,6 +37,7 @@ var q = async.queue(function(record, nextRecord) {
       // console.log(ner.entities.LOCATION)
       rows.push(_.assign({
         locations: _.uniq(ner.entities.LOCATION).join(' | '),
+        organizations: _.uniq(ner.entities.ORGANIZATION).join(' | '),
         people: _.uniq(ner.entities.PERSON).join(' | ')
       }, record));
 
@@ -62,7 +66,7 @@ q.drain = function() {
     delimiter: ';',
     quoted: true,
     header: true,
-    columns: ['url', 'src', 'data', 'From', 'To', 'Subject', 'Date', 'locations', 'people']
+    columns: ['url', 'src', 'data', 'From', 'To', 'Subject', 'Date', 'locations', 'people', 'organizations']
   }, function(_err, data) {
     if(_err){
       console.log('err', _err)
