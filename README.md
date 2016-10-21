@@ -113,10 +113,6 @@ And run `ner-server.sh`:
 Open a **new terminal window** and change into the `A-Republic-of-Emails` directory there:
    
     cd A-Republic-of-Emails
-
-Update the scripts:
-
-    npm update
     
 And run `stanfordNER.js`:
 
