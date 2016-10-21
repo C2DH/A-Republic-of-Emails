@@ -20,15 +20,15 @@ Before installation, the scraping script requires Node.js to be installed, see h
 
 1. Download A-Republic-of-Emails source in a terminal or command line:
     
-    `git clone https://github.com/C2DH/A-Republic-of-Emails.git`
+    git clone https://github.com/C2DH/A-Republic-of-Emails.git
     
 2. Change into the `A-Republic-of-Emails` directory:
 
-    `cd A-Republic-of-Emails`
+    cd A-Republic-of-Emails
     
 3. Install the Node.js node:
 
-    `npm install`
+    npm install
 
 # 2. Scraping the Wikileaks email archive
 
@@ -45,7 +45,7 @@ and wait for the process to be completed.
 ### Validation
 Sometimes, some emails may not be scraped correctly due to time-out errors. To check your database, change the number of emails to be scraped in the `settings.js` file to `10` and run the script again with:
 
-`node index.js`
+    node index.js
 
 The script will run through all the scraped emails and scrape missing emails. If you get the error `TypeError: Cannot read property 'split' of undefined` this means there are no more emails to be scraped.
 
@@ -77,11 +77,11 @@ After scraping, we can perform text normalisation of the email texts (the separa
 
 To launch the stemming script, change into the `A-Republic-of-Emails` directory (if you were not there already):
 
-    `cd A-Republic-of-Emails`
+    cd A-Republic-of-Emails
 
 And run `stemmer.js`
 
-    `node stemmer.js`
+    node stemmer.js
     
 ## Results
 
@@ -102,29 +102,29 @@ In order to perform Named Entity Recognition, the Stanford NER toolkit needs to 
 
 ## Usage
 
-To load the NER classifier, change into the `A-Republic-of-Emails` directory (if you were not there already):
+To load the NER classifier, drag the `ner-server.sh` file into the stanford NER folder[[4]](#5-notes). After doing so, change into the stanford NER folder. For example, if you have called this folder stanfordNER, then:
    
-   `cd A-Republic-of-Emails`
+    cd stanfordNER
 
-And run `ner-server.sh` [[4]](#5-notes):
+And run `ner-server.sh`:
 
-    `./ner-server.sh`
+    ./ner-server.sh
     
 Open a **new terminal window** and change into the `A-Republic-of-Emails` directory there:
    
-   `cd A-Republic-of-Emails`
+    cd A-Republic-of-Emails
 
 Update the scripts:
 
-    `npm update`
+    npm update
     
 And run `stanfordNER.js`
 
-    `node stanfordNER.js`
+    node stanfordNER.js
     
 The stanfordNER will run the 7 class model:	Location, Person, Organization, Money, Percent, Date, Time. However, we will export only the first three types: Location, Person, Organization, to a CSV file. To do so run `tags.js`
 
-    `node tags.js`
+    node tags.js
 
 ## Results
 
