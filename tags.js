@@ -1,6 +1,6 @@
 "use strict"
 /*
-  Print out a proper csv. To be used after stanfordNER.
+  Print out a proper csv. To be used after stanfordNER
 */
 var fs          = require('fs'),
     db          = require('diskdb'),
@@ -28,20 +28,14 @@ var q = async.queue(function(record, nextRecord) {
     },
 
     function collect(contents, next) {
-      console.log('-- collecting LOCATIONS: ', filepath);
+      console.log('-- collecting tags: ', filepath);
       // get NER annotated file
       var ner = JSON.parse(contents);
       // console.log(ner.entities.LOCATION)
-      var locations = _.groupBy(ner.entities.LOCATION);
-      
-      console.log(locations);
-
-      for(var loc in locations){
-        rows.push(_.assign({
-          place: loc,
-          mentions: locations[loc].length
-        }, record));
-      }
+      rows.push(_.assign({
+        locations: _.uniq(ner.entities.LOCATION).join(' | '),
+        people: _.uniq(ner.entities.PERSON).join(' | ')
+      }, record));
 
       next(null)
     },
@@ -59,31 +53,22 @@ var q = async.queue(function(record, nextRecord) {
 }, 3);
 
 q.push(_(db.records.find())
-  .take(5) // uncomment for testing
+  // .take(5) // uncomment for testing
   .value())
 q.drain = function() {
   console.log('And we are done! ... writing csv ...');
-  console.log(rows)
+  
   stringify(rows, {
     delimiter: ';',
     quoted: true,
     header: true,
-    columns: ['url', 'src', 'From', 'To', 'Subject', 'Date'].concat([
-      'lat',
-      'lng',
-      'place',
-      'city',
-      'country',
-      'countrycode',
-      'mentions',
-      'fcl'
-    ])
+    columns: ['url', 'src', 'data', 'From', 'To', 'Subject', 'Date', 'locations', 'people']
   }, function(_err, data) {
     if(_err){
       console.log('err', _err)
     } else {
       console.log('done!')
-      fs.writeFile('./contents/export.geonames.csv', data, function (__err) {
+      fs.writeFile('./contents/export.ner.csv', data, function (__err) {
         if(__err) {
           console.log('err:', __err)
           return;
