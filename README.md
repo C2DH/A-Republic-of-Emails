@@ -20,15 +20,15 @@ Before installation, the scraping script requires Node.js to be installed, see h
 
 1. Download A-Republic-of-Emails source in a terminal or command line:
     
-    git clone https://github.com/C2DH/A-Republic-of-Emails.git
+        git clone https://github.com/C2DH/A-Republic-of-Emails.git
     
 2. Change into the `A-Republic-of-Emails` directory:
 
-    cd A-Republic-of-Emails
+        cd A-Republic-of-Emails
     
 3. Install the Node.js node:
 
-    npm install
+        npm install
 
 # 2. Scraping the Wikileaks email archive
 
