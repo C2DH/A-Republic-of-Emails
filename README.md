@@ -1,7 +1,7 @@
 # A-Republic-of-Emails
 
 A Republic of Emails is a project in which students of the History master at the University of Luxembourg experiment with digital methods/tools on the Hillary Clinton emails. These emails were released as part of a FOIA request (see https://en.wikipedia.org/wiki/Hillary_Clinton_email_controversy#Freedom_of_Information_lawsuits), and subsequently hosted by Wikileaks at https://wikileaks.org/clinton-emails/. To analyse the emails using digital tools, the Wikileaks email archive needs to be scraped to put the emails in an appropriate format. 
-The scripts on this GitHub repository can be used to scrape the archive.
+The scripts on this GitHub repository can be used to scrape and process the archive.
 
 # Table of Contents
 1. [Installation](#1-installation)
@@ -14,7 +14,7 @@ The scripts on this GitHub repository can be used to scrape the archive.
 
 ## Dependencies
 
-Before installation, the scraping script requires Node.js to be installed, see https://nodejs.org/en/download/
+Before installation, the scraping script requires Node.js to be installed, see https://nodejs.org/en/download/.
 
 ## Installing the script
 
@@ -79,18 +79,18 @@ To launch the stemming script, change into the `A-Republic-of-Emails` directory 
 
     cd A-Republic-of-Emails
 
-And run `stemmer.js`
+And run `stemmer.js`:
 
     node stemmer.js
     
 ## Results
 
-The normalised emails are saved as separate `.txt` files in a subfolder of the folder containing emails. Thus all emails of the `/contents/f-0` folder are normalised and saved into `/contents/f-0/stems`, etc.
+The normalised emails are saved as separate `.txt` files in a subfolder of the folder containing emails. Thus all emails of the `/contents/f-0/` folder are normalised and saved into `/contents/f-0/stems/`, etc.
 
 ## Advanced options
 
--If you do not want to perform step 2. Lowercasing of all words, comment out line 29 in `stemmer.js` and uncomment line 30
--If you do not want to perform step 5. Removal of stopwords, comment out line 36 in `stemmer.js`
+- If you do not want to perform step 2. Lowercasing of all words, comment out line 29 in `stemmer.js` and uncomment line 30
+- If you do not want to perform step 5. Removal of stopwords, comment out line 36 in `stemmer.js`
 
 # 4. Named Entity Recognition of emails contents using Stanford NER
 
@@ -118,11 +118,11 @@ Update the scripts:
 
     npm update
     
-And run `stanfordNER.js`
+And run `stanfordNER.js`:
 
     node stanfordNER.js
     
-The stanfordNER will run the 7 class model:	Location, Person, Organization, Money, Percent, Date, Time. However, we will export only the first three types: Location, Person, Organization, to a CSV file. To do so run `tags.js`
+The stanfordNER will run the 7 class model:	Location, Person, Organization, Money, Percent, Date, Time. However, we will export only the first three types to a CSV file: Location, Person, Organization. To do so run `tags.js`:
 
     node tags.js
 
