@@ -26,7 +26,8 @@ var q = async.queue(function(filepath, nextFile) {
       console.log('-- stemming file: ', filepath);
 
       var stems = _(tokenize(contents))
-          .map(d => d.replace(/\d/g,'')) // clean from nnumbers
+      	  .map(d => d.toLowerCase().replace(/\d/g,'')) // clean from numbers and lowercase text
+          //.map(d => d.replace(/\d/g,'')) // clean from numbers without lowercasing text
           .map(d => d.replace(/[\d\.:\/,;\?\!<>@`'"]/g, '').trim()) // clean from digits
           .compact() // remove empty strings
 

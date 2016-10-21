@@ -1,2 +1,4 @@
-contents/
+contents/*
+!contents/.gitkeep
 node_modules/
+stanford-ner/
