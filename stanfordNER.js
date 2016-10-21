@@ -1,7 +1,9 @@
 var fs          = require('fs'),
+    path        = require('path'),
     db          = require('diskdb'),
     _           = require('lodash'),
     async       = require('async'),
+    mkdirp      = require('mkdirp'),
     publicEye   = require('public-eye')(),
     storage     = db.connect(__dirname + '/contents', ['records']);
 
@@ -26,11 +28,22 @@ var q = async.queue(function(filepath, nextFile) {
     },
 
     function(response, next) {
-      console.log('-- storing stanfordNER responses in: ', filepath + '.NER.json');
-      fs.writeFile(filepath + '.NER.json', JSON.stringify({
-        annotated: response.raw,
-        entities:response.entities
-      }, null, 2), next);
+      var outdir = path.join(path.dirname(filepath), 'NER'),
+          outpath = path.join(outdir, path.basename(filepath) + '.NER.json');
+      
+      console.log('-- storing stanfordNER responses in: ', outpath);
+      
+      mkdirp(outdir, function (err) {
+        if (err)
+          next(err);
+        else
+          fs.writeFile(outpath, JSON.stringify({
+            annotated: response.raw,
+            entities:response.entities
+          }, null, 2), next);
+      });
+
+      
     }
   ], function(err) {
     if(err) {
